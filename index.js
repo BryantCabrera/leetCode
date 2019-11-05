@@ -30,7 +30,7 @@ var addTwoNumbers = function(l1, l2) {
     for (let i = 0; i < 2; i++) {
         let current = linkedLists[i].val;
         while (current.next !== null) {
-            current = linkedLists[i].next;
+            current = current.next;
             numbersMap[`l${i+1}`].push(current.val);
         }
     } 
