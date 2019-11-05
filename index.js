@@ -20,7 +20,8 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-const linkedLists = [l1, l2];
+var addTwoNumbers = function(l1, l2) {
+    const linkedLists = [l1, l2];
     const numbersMap = {
         l1: [l1.val],
         l1num: 0,
@@ -42,3 +43,4 @@ const linkedLists = [l1, l2];
     const l3 = l3num.toString().split('').reverse().map((num) => parseInt(num));
     
     return l3;
+};
