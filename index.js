@@ -40,7 +40,44 @@ var addTwoNumbers = function(l1, l2) {
     } 
 
     const l3num = numbersMap.l1num + numbersMap.l2num;   
-    const l3 = l3num.toString().split('').reverse().map((num) => parseInt(num));
+    const l3arr = l3num.toString().split('').map((num) => parseInt(num));
     
-    return l3;
+    class Node {
+        constructor(val, next) {
+            this.val = val;
+            this.next = next || null;
+        }
+    }
+    
+    class LinkedList {
+        constructor() {
+            this.val = null;
+            this.next = null;
+        }
+        
+        prepend (val) {
+            if (!this.val) {
+                this.val = val;
+            } else {
+                let temp = new Node(this.val, this.next);
+                console.log(temp, 'temp');
+                this.val = val;
+                this.next = temp;
+            }
+        }
+    }
+    
+    const createLinkedList = (arr) => {
+        const l3LinkedList = new LinkedList;
+        for (let i = 0; i < arr.length; i++) {
+            l3LinkedList.prepend(arr[i]);
+        }
+        return l3LinkedList;
+    }
+    
+    createLinkedList(l3arr);
+    console.log(l3arr, 'l3arr');
+    console.log(createLinkedList(l3arr));
+    
+    return createLinkedList(l3arr);
 };
