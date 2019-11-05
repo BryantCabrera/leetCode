@@ -56,11 +56,10 @@ var addTwoNumbers = function(l1, l2) {
         }
         
         prepend (val) {
-            if (!this.val) {
+            if (this.val === null) {
                 this.val = val;
             } else {
                 let temp = new Node(this.val, this.next);
-                console.log(temp, 'temp');
                 this.val = val;
                 this.next = temp;
             }
@@ -74,10 +73,6 @@ var addTwoNumbers = function(l1, l2) {
         }
         return l3LinkedList;
     }
-    
-    createLinkedList(l3arr);
-    console.log(l3arr, 'l3arr');
-    console.log(createLinkedList(l3arr));
     
     return createLinkedList(l3arr);
 };
