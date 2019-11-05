@@ -20,11 +20,12 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function(l1, l2) {
-    const linkedLists = [l1, l2];
+const linkedLists = [l1, l2];
     const numbersMap = {
         l1: [l1.val],
-        l2: [l2.val]
+        l1num: 0,
+        l2: [l2.val],
+        l2num: 0
     };
     
     for (let i = 0; i < 2; i++) {
@@ -33,7 +34,11 @@ var addTwoNumbers = function(l1, l2) {
             current = current.next;
             numbersMap[`l${i+1}`].push(current.val);
         }
+        
+        numbersMap[`l${i+1}num`] = parseInt(numbersMap[`l${i+1}`].join(''));
     } 
 
-    console.log(numbersMap);
-};
+    const l3num = numbersMap.l1num + numbersMap.l2num;   
+    const l3 = l3num.toString().split('').reverse().map((num) => parseInt(num));
+    
+    return l3;
