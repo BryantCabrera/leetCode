@@ -22,7 +22,99 @@
 // Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 
 
-
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var spiralOrder = function(matrix) {
+	// Edge Case: If matrix is empty
+	if (matrix.length === 0) {
+			return matrix;
+	}
+	
+	const solution = [];
+	
+	let xMin = 0;
+	let xMax = matrix[0].length - 1;
+	let x = 0;
+	let yMin = 0;
+	let yMax = matrix.length - 1;;
+	let y = 0;
+	const matrixArea = matrix[0].length * matrix.length;
+	
+	// Edge Case: Matrix contains empty arrays
+	if (matrixArea === 0) {
+			return [];
+	}
+			
+	const iterateForward = (arrayIndex, xMin, xMax) => {
+			for (let k = xMin; k <= xMax; k++) {
+					solution.push(matrix[arrayIndex][k]);
+			}
+			// Once we have processed the lowest-indexed row, we no longer need to process it again.
+			yMin = yMin < yMax ? yMin + 1 : yMax;
+			x = xMax;
+			y = yMin;
+	};
+	
+	const iterateBackward = (arrayIndex, xMin, xMax) => {
+			for (let l = xMax; l >= xMin; l--) {
+					solution.push(matrix[arrayIndex][l]);
+			}
+			// Once we have processed the highest-indexed row, we no longer need to process it again.
+			yMax--;
+			x = xMin;
+			y = yMax;
+	};
+	
+	const iterateDown = (arrayIndex, yMax, elementIndex) => {
+			for (let m = arrayIndex; m <= yMax; m++) {
+					solution.push(matrix[m][elementIndex]);
+			}
+			// Once we have processed the highest-indexed column, we no longer need to process it again.
+			xMax--;
+			x = xMax;
+			y = yMax - 1;
+	};
+	
+	const iterateUp = (arrayIndex, yMin, elementIndex) => {
+			for (let n = arrayIndex; n >= yMin; n--) {
+					solution.push(matrix[n][elementIndex]);
+			}
+			// Once we have processed the lowest-indexed column, we no longer need to process it again.
+			xMin = xMin < xMax ? xMin + 1 : xMax;
+			x = xMin;
+			y = yMin;
+	};
+	
+	const traversalPattern = ['iterateForward', 'iterateDown', 'iterateBackward', 'iterateUp'];
+	let currentAction = 0;
+	
+	while (solution.length < matrixArea) {
+			// Determine what action to take when traversing the matrix     
+			switch(traversalPattern[currentAction]) {
+					case 'iterateForward':
+							iterateForward(x, xMin, xMax);
+							break;
+					case 'iterateDown':
+							iterateDown(y, yMax, x);
+							break;
+					case 'iterateBackward':
+							iterateBackward(yMax, xMin, xMax);
+							break;
+					case 'iterateUp':
+							iterateUp(y, yMin, x);
+							break;
+					default:
+							console.log('No appropriate action found.');
+			}
+			
+			// Move onto next traveralPattern Action
+			currentAction = currentAction === traversalPattern.length - 1 ? 0 : currentAction + 1;      
+	}
+	
+	return solution;
+};
 
 
 // Debugging consols.logs()
