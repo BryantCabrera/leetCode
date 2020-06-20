@@ -14,3 +14,22 @@
 // Output: 36
 // Explanation: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36.
 // Note: You may assume that n is not less than 2 and not larger than 58.
+
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+const integerBreak = function(n) {
+	let maxes = [0, 1];
+	
+	for (let i = 2; i <= n; i++) {
+			maxes[i] = 0;
+			
+			for (let j = 1; j < i; j++) {
+					maxes[i] = Math.max(maxes[i], maxes[j] * (i - j), j * (i - j));
+			}
+	}
+	
+	return maxes[n];
+};
