@@ -32,3 +32,20 @@
 // 1 <= s.length <= 7
 // s consists only of uppercase English letters.
 // s is between "A" and "FXSHRXW".
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var titleToNumber = function(s) {
+	let value = 0;
+	let characterPlace = s.length - 1;
+	
+	for (const characterIndex in s) {
+			value += ((s.charCodeAt(characterIndex) - 64) * 26 ** (characterPlace));
+			
+			characterPlace--;
+	}
+	
+	return value;
+};
