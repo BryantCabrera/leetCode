@@ -49,6 +49,43 @@
 // It's guaranteed that the answer will be less than or equal to 2 * 109.
 
 
+// Solution
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+var uniquePaths = function(m, n) {
+	const pathMap = new Map();
+	
+	const findPaths = (currentPosition) => {     
+		if (!pathMap.has(`${currentPosition}`)) {
+			let right = 0,
+			down = 0;
+			
+			if (currentPosition[0] == n && currentPosition[1] == m) {
+				return 1;
+			} else {
+				if (currentPosition[0] !== n) {
+					right = findPaths([currentPosition[0] + 1, currentPosition[1]]);
+				}
+
+				if (currentPosition[1] !== m) {
+					down = findPaths([currentPosition[0], currentPosition[1] + 1]);
+				}
+
+				pathMap.set(`${currentPosition}`, right + down);
+			}           
+		}
+
+		
+		return pathMap.get(`${currentPosition}`);
+	}
+	
+	return findPaths([1, 1]);
+};
+
+
 // Unmemoized Recursive Solution
 // /**
 //  * @param {number} m
