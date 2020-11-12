@@ -18,3 +18,39 @@
 //     /  \
 //    15   7
 // return its depth = 3.
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function(root) {
+	// Edge Cases
+	if (root === null) return 0;
+	
+	let globalDepth = 0;
+	let currentDepth = 0;
+	
+	const depthFirstSearch = (node, currentDepth = 0) => {
+			if (node === null) {
+					globalDepth = Math.max(globalDepth, currentDepth);
+					return;
+			}
+			
+			// Left branch
+			depthFirstSearch(node.left, currentDepth + 1);
+			// Right branch
+			depthFirstSearch(node.right, currentDepth + 1);
+	};
+	
+	depthFirstSearch(root);
+	
+	return globalDepth;
+};
