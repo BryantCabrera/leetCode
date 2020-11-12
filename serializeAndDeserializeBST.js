@@ -53,7 +53,7 @@ var serialize = function(root) {
 * @return {TreeNode}
 */
 var deserialize = function(data) {
-	// The arr we pass in has to be in _______ order
+	// The string we pass in has to be in ascending order where each node's value is delimited by a ','
 	const createBST = (arr, startIndex, endIndex) => {
 			// EDGE CASE: If the array is empty or not and array, return null.
 	if (arr.length === 0 || !Array.isArray(arr)) return null;
