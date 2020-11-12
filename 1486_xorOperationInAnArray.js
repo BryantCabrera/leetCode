@@ -36,3 +36,20 @@
 // 1 <= n <= 1000
 // 0 <= start <= 1000
 // n == nums.length
+
+/**
+ * @param {number} n
+ * @param {number} start
+ * @return {number}
+ */
+var xorOperation = function(n, start) {
+	const newArr = [];
+	
+	for (let i = 0; i < n; i++) {
+			newArr.push(start + 2*i);
+	}
+	
+	return newArr.reduce((acc, num) => {
+			return acc ^ num;
+	}, 0);
+};
