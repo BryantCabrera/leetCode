@@ -50,3 +50,20 @@
 // -1000 <= Node.val <= 1000
 // The value of each node in the list is unique.
 // The node to be deleted is in the list and is not a tail node
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} node
+ * @return {void} Do not return anything, modify node in-place instead.
+ */
+var deleteNode = function(node) {
+	// Set current node's value to the next node's value & current node's next to the next node's next.
+	node.val = node.next.val;
+	node.next = node.next.next;
+};
