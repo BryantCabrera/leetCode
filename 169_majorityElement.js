@@ -24,3 +24,18 @@
 
 // Input: [2,2,1,1,1,2,2]
 // Output: 2
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function(nums) {
+	const numCount = nums.reduce( (acc, num) => {
+			acc[num] = acc[num] ? acc[num] + 1 : 1;
+			return acc;
+	}, {});
+
+	for (const num in numCount) {
+			if (numCount[num] > (nums.length / 2)) return parseInt(num);
+	}
+};
