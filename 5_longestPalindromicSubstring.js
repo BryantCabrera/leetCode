@@ -39,3 +39,35 @@
 
 // 1 <= s.length <= 1000
 // s consist of only digits and English letters (lower-case and/or upper-case),
+
+
+
+// First Attempt: Time Limit Exceeded
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var longestPalindrome = function(s) {
+	const isPalindrome = (str) => {
+			const reversedStr = str.toLowerCase().split('').reverse().join('');
+			
+			return str.toLowerCase() === reversedStr;
+	};
+	
+	let tempStr = '';
+	let currentLongestPalindromicSubstring = '';
+	
+	for (let i = 0; i < s.length; i++) {
+			for (let j = i; j < s.length; j++) {
+					tempStr += s[j];
+					
+					if (isPalindrome(tempStr)) {
+							currentLongestPalindromicSubstring = tempStr.length > currentLongestPalindromicSubstring.length ? tempStr : currentLongestPalindromicSubstring;
+					}
+			}
+			
+			tempStr = '';
+	}
+			
+	return currentLongestPalindromicSubstring;
+};
