@@ -27,3 +27,33 @@
 
 // Follow up:
 // What if the inputs contain unicode characters? How would you adapt your solution to such case?
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function(s, t) {
+	// If the strings are not the same length, return false.
+	if (s.length !== t.length) return false;
+	
+	// If the strings are the same length, check the letters from string against the letters in string s, which we have stored in a hashMap.
+	let result = true;
+	
+	const charMap = {};
+	
+	for (const char of s) {
+			charMap[char] = charMap[char] ? charMap[char] + 1 : 1;
+	}
+	
+	for (const char of t) {
+			if (!charMap[char] || charMap[char] < 1) {
+					result = false;
+					break;
+			} else {
+					charMap[char] = charMap[char] - 1;
+			}    
+	}
+	
+	return result;
+};
