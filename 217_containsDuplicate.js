@@ -28,3 +28,26 @@
 
 // Input: [1,1,1,3,3,4,3,2,4,2]
 // Output: true
+
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var containsDuplicate = function(nums) {
+	// Sort the array.
+	nums.sort();
+	
+	let result = false;
+	
+	for (let i = 0; i < nums.length; i++) {
+			// If we are at the first element, there is nothing to check it against.
+			if (i === 0) continue;
+			
+			if (nums[i] === nums[i - 1]) {
+					result = true;
+					break;
+			}
+	}
+	
+	return result;
+};
