@@ -46,3 +46,14 @@
 // 1 <= n <= 104
 // 0 <= nums[i] <= n
 // All the numbers of nums are unique.
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function(nums) {
+	nums.sort();
+	for (let i = 0; i < nums.length; i++) {
+			if (nums[i] !== i) return i;
+	}
+};
