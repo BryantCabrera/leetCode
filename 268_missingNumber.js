@@ -47,6 +47,24 @@
 // 0 <= nums[i] <= n
 // All the numbers of nums are unique.
 
+// Optimized Solution: O(n) time and (1) space.
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var missingNumber = function(nums) {
+	let expectedSum = 0;
+	let sum = 0;
+	for (let i = 0; i < nums.length; i++) {
+			sum += nums[i];
+			
+			expectedSum += (i + 1);
+	}
+	
+	return expectedSum - sum;
+};
+
+// Unoptimized Solution: O(n log n) time and O(1) space.
 /**
  * @param {number[]} nums
  * @return {number}
