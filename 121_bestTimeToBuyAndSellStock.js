@@ -29,3 +29,38 @@
 // Input: [7,6,4,3,1]
 // Output: 0
 // Explanation: In this case, no transaction is done, i.e. max profit = 0.
+
+
+// First Attempt
+// /**
+//  * @param {number[]} prices
+//  * @return {number}
+//  */
+// var maxProfit = function(prices) {
+// 	let pricesSorted = Array.from(prices).sort( function (a, b) {
+// 			return a - b;
+// 	});
+	 
+// 	 console.log(prices, '@@@@@prices@@@@@');
+// 	 console.log(pricesSorted, '@@@@@pricesSorted@@@@@');
+	 
+// 	 let profit = 0;
+	 
+// 	 for (let i = 0; i < pricesSorted.length; i++) {
+// 			 if (i === pricesSorted.length - 1) break;
+			 
+// 			 for (let j = i + 1; j < pricesSorted.length; j++) {
+// 					 console.log(i, '@@@@@i@@@@@');
+// 					 console.log(j, '@@@@@j@@@@@');
+// 					 console.log(pricesSorted[i], prices.indexOf(pricesSorted[i]), '@@@@@pricesSorted[i]@@@@@');
+// 					 console.log(pricesSorted[j], prices.indexOf(pricesSorted[j]), '@@@@@pricesSorted[j]@@@@@');
+					 
+// 					 if (prices.indexOf(pricesSorted[j]) > prices.indexOf(pricesSorted[i])) {
+// 							 profit = Math.max(profit, pricesSorted[j] - pricesSorted[i]);
+// 							 console.log(profit, '@@@@@new profit@@@@@');
+// 					 }
+// 			 }
+// 	 }
+			 
+// 	 return profit;
+// };
