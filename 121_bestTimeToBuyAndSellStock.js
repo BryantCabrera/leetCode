@@ -31,6 +31,27 @@
 // Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
 
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {  
+	let profit = 0;
+	
+	for (let i = 0; i < prices.length; i++) {
+			if (i === prices.length - 1) break;
+			
+			for (let j = i + 1; j < prices.length; j++) {
+					if (prices[j] > prices[i]) {
+							profit = Math.max(profit, prices[j] - prices[i]);
+					}
+			}
+	}
+			
+	return profit;
+};
+
+
 // First Attempt
 // /**
 //  * @param {number[]} prices
