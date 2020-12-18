@@ -38,3 +38,26 @@
 // Constraints:
 
 // 1 <= n <= 45
+
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function(n) { 
+	const takeSteps = (stepsRemaining, memo) => {
+			// If we overshoot the end/top of the stairs, it is not a valid path.
+			if (stepsRemaining < 0) return 0;
+			
+			// If exactly no more steps remain, it is a valid path.
+			if (stepsRemaining === 0) return 1;
+			
+			// Access stored values in memo.
+			if (memo[stepsRemaining]) return memo[stepsRemaining];
+			
+			memo[stepsRemaining] = takeSteps(stepsRemaining - 1, memo) + takeSteps(stepsRemaining - 2, memo);
+			
+			return memo[stepsRemaining];
+	};
+	
+	return takeSteps(n, {});
+};
