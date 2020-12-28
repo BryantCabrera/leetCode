@@ -36,3 +36,24 @@
 
 // 0 <= nums.length <= 100
 // 0 <= nums[i] <= 400
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function(nums) {
+	// Edge Cases
+	if (nums === null || nums.length === 0) return 0;
+	if (nums.length === 1) return nums[0];
+	
+	// Initialize maxLoot with first 2 houses.
+	const maxLoot = [nums[0], Math.max(nums[0], nums[1])];
+	
+	for (let i = 2; i < nums.length; i++) {
+			// The max loot at the current house i is the max of either (a) the max at the previous house (b) the sum of this house's loot plus the max 2 houses back (because you cannot rob houses next to each other).
+			maxLoot[i] = Math.max(maxLoot[i - 1], nums[i] + maxLoot[i - 2]);
+			console.log(maxLoot, `@@@@@maxLoot at ${i}@@@@@`);
+	}
+	
+	return maxLoot[maxLoot.length - 1];
+};
