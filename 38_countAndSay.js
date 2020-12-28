@@ -44,3 +44,40 @@
 // Constraints:
 
 // 1 <= n <= 30
+
+/**
+ * @param {number} n
+ * @return {string}
+ */
+var countAndSay = function(n) {
+	// Base Case.
+	if (n === 1) return "1";
+	
+	const constructCountAndSay = (str) => {
+			// I am using an array for the data structure because strings are immutable in JavaScript, so we wouldn't be able to change a particular character (namely, the counter prefix for a particular number in the string) in the string.
+			let temp = [];
+			
+			let counter = 0;
+			for (let i = 0; i < str.length; i++) {
+					if (str[i] === temp[temp.length - 1]) {
+							counter++;
+							temp[temp.length - 2] = `${counter}`;
+					} else {
+							counter = 1;
+							temp.push(`${counter}`);
+							temp.push(`${str[i]}`);
+					}
+			}
+			
+			return temp.join('');
+	};
+	
+	// With the base case accounted for, we can start our loop at i = 2;
+	let solution = "1";
+	
+	for (let i = 2; i <= n; i++) {
+			solution = constructCountAndSay(solution);
+	}
+	
+	return solution;
+};
