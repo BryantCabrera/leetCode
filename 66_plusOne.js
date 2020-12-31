@@ -40,3 +40,56 @@
 
 // 1 <= digits.length <= 100
 // 0 <= digits[i] <= 9
+
+
+/**
+ * @param {number[]} digits
+ * @return {number[]}
+ */
+var plusOne = function(digits) {
+	const solution = [];
+	
+	let carry = 0;
+	for (let i = digits.length - 1; i >= 0; i--) {
+			// Increment the current digit or add the carry.
+			let increment = i === digits.length - 1 ? digits[i] + 1 : digits[i] + carry;
+			
+			// Reset carry.
+			carry = 0;
+			
+			let newDigit;
+			
+			// Account for new carries.
+			if (increment >= 10) {
+					carry += 1;
+					newDigit = increment - 10;
+			} else {
+					newDigit = increment;
+			}
+			
+			// Assign new digit.
+			solution[i] = newDigit;
+
+			if (i === 0 && carry !== 0) {
+					solution.unshift(carry);
+			}
+	}
+	
+	return solution;
+};
+
+
+// First Attempt
+// /**
+//  * @param {number[]} digits
+//  * @return {number[]}
+//  */
+// var plusOne = function(digits) {
+// 	const number = parseInt(digits.join(''), 10);
+	
+// 	const incrementedNumber = `${number + 1}`;
+// 	const solution = incrementedNumber.split('');
+// 	solution.forEach((digit, index) => incrementedNumber[index] = parseInt(digit, 10));
+	
+// 	return solution;
+// };
