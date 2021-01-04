@@ -53,3 +53,49 @@
 // You may assume there are no cycles anywhere in the entire linked structure.
 // Each value on each linked list is in the range [1, 10^9].
 // Your code should preferably run in O(n) time and use only O(1) memory.
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function(headA, headB) {  
+	const createArrayFromLinkedList = (linkedList) => {
+			const array = [];
+			
+			let currentNode = linkedList;
+			while (currentNode !== null) {
+					array.push(currentNode);
+					currentNode = currentNode.next;
+			}
+			
+			return array;
+	};
+	
+	const arrayA = createArrayFromLinkedList(headA);
+	const arrayB = createArrayFromLinkedList(headB);
+	
+	let counterA = arrayA.length - 1;
+	let counterB = arrayB.length - 1;
+	let intersectionNode = null;
+	
+	while (counterA >= 0 && counterB >= 0) {
+			if (arrayA[counterA] === arrayB[counterB]) {
+					intersectionNode = arrayA[counterA];
+					counterA--;
+					counterB--;
+			} else {
+					break;
+			}
+	}
+	
+	return intersectionNode;
+};
