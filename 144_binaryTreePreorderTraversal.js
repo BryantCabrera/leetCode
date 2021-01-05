@@ -50,3 +50,37 @@
 // Follow up:
 
 // Recursive solution is trivial, could you do it iteratively?
+
+
+// Recursive Solution
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal = function(root) {
+	const solution = [];
+	
+	const traversePreorder = (node, arr) => {
+			if (node === null) return node;
+			
+			arr.push(node.val);
+			
+			const left = traversePreorder(node.left, arr);
+			if (left != null) arr.push(left);
+			
+			const right = traversePreorder(node.right, arr);
+			if (right != null) arr.push(right);
+	};
+	
+	traversePreorder(root, solution);
+	
+	return solution;
+};
