@@ -27,3 +27,50 @@
 //   [9,20],
 //   [3]
 // ]
+
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrderBottom = function(root) {
+	const queue = [root];
+	const solution = [];
+	
+	// Edge Case: Null argument.
+	if (root == null) return solution;
+	
+	while (queue.length) {
+			// Take a snapshot of the number of nodes we need to process.
+			let numNodesInLevel = queue.length;
+			
+			const row = [];
+			
+			while (numNodesInLevel > 0) {
+					// Process first node in the queue.
+					const currentNode = queue.shift();
+					
+					// Build the array of the row's values.
+					row.push(currentNode.val);
+					
+					// Add children to the queue.
+					if (currentNode.left != null) queue.push(currentNode.left);
+					if (currentNode.right != null) queue.push(currentNode.right);
+					
+					// Decrement the number of nodes in the level we need to process.
+					numNodesInLevel--;
+			}
+			
+			solution.unshift(row);
+	}
+			
+	return solution;
+};
