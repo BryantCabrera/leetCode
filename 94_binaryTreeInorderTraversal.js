@@ -52,6 +52,7 @@
 // Recursive solution is trivial, could you do it iteratively?
 
 
+// Recursive Solution
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -82,3 +83,6 @@ var inorderTraversal = function(root) {
 	
 	return solution;
 };
+
+
+// Iterative Solution
