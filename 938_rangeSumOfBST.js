@@ -36,6 +36,53 @@
 // All Node.val are unique.
 
 
+// Optimized Solution
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} low
+ * @param {number} high
+ * @return {number}
+ */
+var rangeSumBST = function(root, low, high) {
+	let sum = 0;
+	
+	const traverseTree = (node) => {
+			if (node === null) return 0;
+			
+			// If the node falls within the range, inclusively, add it to the sum.
+			if (node.val >= low && node.val <= high) {
+					sum += node.val;
+			}
+			
+			// We only need to traverse down the left branches if the current node's value is greater than the lowest value in the range.
+			if (node.val > low) {
+					const left = traverseTree(node.left);
+			}
+			
+			// We only need to traverse down the right branches if the current node's value is less than the highest value in the range.
+			if (node.val < high) {
+					const right = traverseTree(node.right);
+			}
+			
+
+			return node.val;
+	};
+	
+	traverseTree(root);
+	
+	return sum;
+};
+
+
+// First Attempt
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
