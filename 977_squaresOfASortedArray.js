@@ -36,3 +36,16 @@
  
 
 // Follow up: Squaring each element and sorting the new array is very trivial, could you find an O(n) solution using a different approach?
+
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortedSquares = function(nums) {
+	nums.forEach( (num, index) => nums[index] = Math.pow(num, 2));
+	
+	return nums.sort( function (a, b) {
+			return a - b;
+	});
+};
