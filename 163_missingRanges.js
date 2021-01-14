@@ -60,3 +60,40 @@
 // 0 <= nums.length <= 100
 // lower <= nums[i] <= upper
 // All the values of nums are unique.
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} lower
+ * @param {number} upper
+ * @return {string[]}
+ */
+var findMissingRanges = function(nums, lower, upper) {
+	const solution = [];
+	
+	for (let i = -1; i < nums.length; i++) {
+			// EDGE CASE: If we don't have any elements in nums, we want to return `${lower}->${upper}`.
+			// To do so, we need to set currentLower to lower - 1 so we are inclusive of lower's value.
+			// We also need to start our loop at i = -1, otherwise an empty array will never enter the for loop if i is initialized to 0 since nums.length will be 0.
+			const currentLower = nums[i] === undefined ? lower - 1: nums[i];
+
+			// If we are at the last element in the array, nums[i + 1] will be undefined.
+			// So, we set it to the upper + 1 so we are inclusive of the upper itself.
+			const currentUpper = nums[i + 1] === undefined ? upper + 1: nums[i + 1];
+
+			switch (currentUpper - currentLower) {
+					case 0:
+							break;
+					case 1: 
+							break;
+					case 2:
+							solution.push(`${currentLower + 1}`);
+							break;
+					default: 
+							solution.push(`${currentLower + 1}->${currentUpper - 1}`);
+							break;      
+			}   
+	}
+	
+	return solution;
+};
