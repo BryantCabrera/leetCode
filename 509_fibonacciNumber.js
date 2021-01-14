@@ -40,3 +40,26 @@
 // Constraints:
 
 // 0 <= n <= 30
+
+
+// Recursive Solution 
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var fib = function(n) {
+	const solutionMap = new Map();
+	solutionMap.set(0, 0);
+	solutionMap.set(1, 1);
+	
+	const findFib = (num) => {
+			if (solutionMap.get(num) != undefined) {
+					return solutionMap.get(num);
+			} else {
+					solutionMap.set(num, findFib(num - 1) + findFib(num - 2));
+					return solutionMap.get(num);
+			} 
+	}
+	
+	return findFib(n);
+};
