@@ -49,3 +49,58 @@
 // 1 <= z <= 100
 // It's guaranteed that the solutions of f(x, y) == z will be on the range 1 <= x, y <= 1000
 // It's also guaranteed that f(x, y) will fit in 32 bit signed integer if 1 <= x, y <= 1000
+
+
+/**
+ * // This is the CustomFunction's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * function CustomFunction() {
+ *     @param {integer, integer} x, y
+ *     @return {integer}
+ *     this.f = function(x, y) {
+ *         ...
+ *     };
+ * };
+ */
+
+/**
+ * @param {CustomFunction} customfunction
+ * @param {integer} z
+ * @return {integer[][]}
+ */
+var findSolution = function(customfunction, z) {
+	const solution = [];
+	
+	// Implement a binary search.
+	// Since we know the function is always increasing, X and Y can never be more than Z, otherwise if one of these was greater than Z, the other would have to be decreasing to compensate.
+	// We can find our target value by incrementing through all values of X and using a binary search for values of its corresponding Y.
+	// We start our loop at 1 because X has to be a positive integer.
+	for (let x = 1; x <= z; x++) {
+			// Y Values.
+			// We start at 1 because Y has to be a positive integer.
+			let start = 1;
+			// We end at Z for the same reason listed above the for loop.
+			let end = z;
+			
+			while (start <= end) {
+					const median = Math.floor((start + end) / 2);
+					const currentResult = customfunction.f(x, median);
+					
+					if (currentResult === z) {
+							solution.push([x, median]);
+							// Once we have found the Y to our X, we can break from this instance of the while loop and continue on to the next X value in the outer for loop.
+							break;
+					} else if (currentResult < z) {
+							// If the function result is lower than the target value z, adjust the ranges of the binary search accordingly.
+							// Namely, perform a binary search above the median.
+							start = median + 1;
+					} else if (currentResult > z) {
+							// If the function result is lower than the target value z, adjust the ranges of the binary search accordingly.
+							// Namely, perform a binary search below the median.
+							end = median - 1;
+					}
+			}
+	}
+	
+	return solution;
+};
