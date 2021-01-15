@@ -63,3 +63,23 @@ var fib = function(n) {
 	
 	return findFib(n);
 };
+
+
+// Iterative Solution
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var fib = function(n) {
+	const solutionMap = new Map();
+	
+	for (let i = 0; i <= n; i++)  {
+			if (i === 0 || i === 1) {
+					solutionMap.set(i, i);
+			} else {
+					solutionMap.set(i, solutionMap.get(i - 1) + solutionMap.get(i - 2));
+			}
+	}
+	
+	return solutionMap.get(n);
+};
