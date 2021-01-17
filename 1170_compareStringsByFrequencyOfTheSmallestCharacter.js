@@ -36,3 +36,45 @@
 // 1 <= words.length <= 2000
 // 1 <= queries[i].length, words[i].length <= 10
 // queries[i][j], words[i][j] are English lowercase letters.
+
+
+/**
+ * @param {string[]} queries
+ * @param {string[]} words
+ * @return {number[]}
+ */
+var numSmallerByFrequency = function(queries, words) {
+	const findSmallestChar = (str) => {
+			const strArr = str.split('').sort();
+			return strArr[0];
+	};
+	
+	const findCountOfSmallestChar = (str, char) => {
+			let count = 0;
+			
+			for (let i = 0; i < str.length; i++) {
+					if (str[i] === char) count++;
+			}
+			
+			return count;
+	}
+	
+	const solution = new Array(queries.length);
+	solution.fill(0);
+	
+	for (let i = 0; i < queries.length; i++) {
+			const smallestChar1 = findSmallestChar(queries[i]);
+			
+			const countOfSmallestChar1 = findCountOfSmallestChar(queries[i], smallestChar1);
+			
+			for (let j = 0; j < words.length; j++) {
+					const smallestChar2 = findSmallestChar(words[j]);
+					
+					const countOfSmallestChar2 = findCountOfSmallestChar(words[j], smallestChar2);
+					
+					if (countOfSmallestChar1 < countOfSmallestChar2) solution[i] += 1;
+			}
+	}
+	
+	return solution;
+};
