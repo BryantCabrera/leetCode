@@ -30,3 +30,38 @@
 
 // One employee has at most one direct leader and may have several subordinates.
 // The maximum number of employees won't exceed 2000.
+
+
+/**
+ * Definition for Employee.
+ * function Employee(id, importance, subordinates) {
+ *     this.id = id;
+ *     this.importance = importance;
+ *     this.subordinates = subordinates;
+ * }
+ */
+
+/**
+ * @param {Employee[]} employees
+ * @param {number} id
+ * @return {number}
+ */
+var GetImportance = function(employees, id) {
+	const findEmployee = (arr, id) => {
+			for (let i = 0; i < arr.length; i++) {
+					if (arr[i].id === id) return arr[i];
+			}
+	};
+	
+	const employee = findEmployee(employees, id);
+	
+	let solution = employee.importance;
+	
+	for (let j = 0; j < employee.subordinates.length; j++) {
+			const subordinate = findEmployee(employees, employee.subordinates[j]);
+			
+			solution += GetImportance(employees, subordinate.id);
+	}
+	
+	return solution;
+};
