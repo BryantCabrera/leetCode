@@ -35,3 +35,41 @@
 // The length of image and image[0] will be in the range [1, 50].
 // The given starting pixel will satisfy 0 <= sr < image.length and 0 <= sc < image[0].length.
 // The value of each color in image[i][j] and newColor will be an integer in [0, 65535].
+
+/**
+ * @param {number[][]} image
+ * @param {number} sr
+ * @param {number} sc
+ * @param {number} newColor
+ * @return {number[][]}
+ */
+var floodFill = function(image, sr, sc, newColor) {
+	// Edge Case: If we are floodFilling with the same color, the image does not to be changed, so return the current image.
+	if (image[sr][sc] === newColor) return image;
+
+	// Cache the old pixel's value to compare against.
+	const oldValue = image[sr][sc];
+	image[sr][sc] = newColor;
+
+	// Up
+	if (sr - 1 >= 0 && image[sr - 1][sc] === oldValue) {
+			floodFill(image, sr - 1, sc, newColor);
+	}
+
+	// Down
+	if (sr + 1 < image.length && image[sr + 1][sc] === oldValue) {
+			floodFill(image, sr + 1, sc, newColor);
+	}
+
+	// Left
+	if (sc - 1 >= 0 && image[sr][sc - 1] === oldValue) {
+			floodFill(image, sr, sc - 1, newColor);
+	}
+
+	// Right
+	if (sc + 1 < image[sr].length && image[sr][sc + 1] === oldValue) {
+			floodFill(image, sr, sc + 1, newColor);
+	}
+
+	return image;
+};
