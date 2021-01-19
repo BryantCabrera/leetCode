@@ -34,3 +34,28 @@
 // 0 <= strs.length <= 200
 // 0 <= strs[i].length <= 200
 // strs[i] consists of only lower-case English letters.
+
+
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function(strs) {
+	// Edge Case: If there are no elements in the strs array, there is nnon common prefix.
+	if (strs.length === 0) return '';
+	
+	let solution = '';
+	
+	for (let i = 0; i < strs[0].length; i++) {
+			// We start the loop at 1 because we are using word 0 as the reference for every other word.
+			for (let j = 1; j < strs.length; j++) {
+					if (strs[j][i] !== strs[0][i]) {
+							return solution;
+					}
+			}
+			
+			solution += strs[0][i];
+	}
+	
+	return solution;
+};
