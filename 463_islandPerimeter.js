@@ -42,3 +42,133 @@
 // col == grid[i].length
 // 1 <= row, col <= 100
 // grid[i][j] is 0 or 1.
+
+
+
+
+
+// First Recursive Attempt
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
+// var islandPerimeter = function(grid) {
+// 	let solution = 0;
+	
+// 	const getPerimeter = (matrix, row, col, perimeter) => {
+// 			console.log(`matrix[${row}][${col}]: ${matrix[row][col]}`);
+// 			// console.log(perimeter, '@@@@@perimeter@@@@@');
+			
+			
+// 			if (matrix[row][col] === 1) {
+// 					// Mark island as visited.
+// 					matrix[row][col] = 0;
+// 					perimeter += 4;
+// 					console.log(perimeter, solution, '@@@@@perimeter@@@@@');
+					
+// 					// Find all adjacent land masses
+// 					// Up
+// 					if (row - 1 >= 0 && matrix[row - 1][col] === 1) {
+// 							getPerimeter(matrix, row - 1, col, perimeter - 1);
+// 					}
+
+// 					// Down
+// 					if (row + 1 < matrix.length && matrix[row + 1][col] === 1) {
+// 							getPerimeter(matrix, row + 1, col, perimeter - 1);
+// 					}
+
+// 					// Left
+// 					if (col - 1 >= 0 && matrix[row][col - 1] === 1) {
+// 							getPerimeter(matrix, row, col - 1, perimeter - 1);
+// 					}
+
+// 					// Right
+// 					if (col + 1 < matrix[row].length && matrix[row][col] + 1 === 1) {
+// 							getPerimeter(matrix, row, col + 1, perimeter - 1);
+// 					}
+// 			}  else {
+// 					return;
+// 			}
+// 	};
+	
+// 	// Find the 1st 1/island.
+// 	for (let i = 0; i < grid.length; i++) {
+// 			for (let j = 0; j < grid[i].length; j++) {
+// 					console.log(i, j, '@@@@@i, j@@@@@');
+// 					if (grid[i][j] === 1) {
+// 							getPerimeter(grid, i, j, solution);
+// 							break;
+// 					}
+// 			}
+// 	}
+	
+// 	return solution;
+// };
+
+
+// Second Recursive Attempt 
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
+// var islandPerimeter = function(grid) {
+// 	// We initialize this to 1 because the 1st island we encounter will contribute 4 sides to the perimeter but the recursion only adds 3.
+// let solution = 1;
+
+// const getPerimeter = (matrix, row, col) => {
+// 	console.log(`matrix[${row}][${col}]: ${matrix[row][col]}`);
+// 	// console.log(perimeter, '@@@@@perimeter@@@@@');
+	
+	
+// 	if (matrix[row][col] === 1) {
+// 			// Mark island as visited.
+// 			matrix[row][col] = 0;
+// 			// Each new island we add will be connected to the other islands by 1 side, so we only add 3 to the perimeter.
+// 			solution += 3;
+// 			console.log(solution, '@@@@@perimeter@@@@@');
+			
+// 			// Find all adjacent land masses
+// 			// Up
+// 			if (row - 1 >= 0 && matrix[row - 1][col] === 1) {
+// 					solution -= 1;
+// 					getPerimeter(matrix, row - 1, col);
+// 			}
+
+// 			// Down     
+// 			if (row + 1 < matrix.length && matrix[row + 1][col] === 1) {
+// 					// console.log(row + 1, matrix[row + 1][col], '@@@@@DOWN@@@@@');
+// 					solution -= 1;
+// 					getPerimeter(matrix, row + 1, col);
+// 			}
+
+// 			// Left
+// 			if (col - 1 >= 0 && matrix[row][col - 1] === 1) {
+// 					solution -= 1;
+// 					getPerimeter(matrix, row, col - 1);
+// 			}
+
+// 			// Right
+// 			if (col + 1 < matrix[row].length && matrix[row][col + 1] === 1) {
+// 					solution -=1;
+// 					getPerimeter(matrix, row, col + 1);
+// 			}
+// 	}  else {
+// 			return;
+// 	}
+// };
+
+// // getPerimeter(grid, 0, 0, perimeter);
+
+// // Find the 1st 1/island.
+// for (let i = 0; i < grid.length; i++) {
+// 	for (let j = 0; j < grid[i].length; j++) {
+// 			console.log(i, j, '@@@@@i, j@@@@@');
+// 			if (grid[i][j] === 1) {
+// 					getPerimeter(grid, i, j, solution);
+// 					return solution;
+// 			}
+// 	}
+// }
+
+// return solution;
+// };
