@@ -44,3 +44,31 @@
  
 
 // Follow up: Could you solve it without converting the integer to a string?
+
+
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function(x) {
+	// If x has a negative sign in front of it (is less than 0), it will not be a palindrome.
+	if (x < 0) return false; 
+	
+	// Initialize the reverse of x to 0 to make our calculation easier.
+	let reversed = 0;
+	
+	// Because we evenntually want to check if our reversed integer is the same as x, we have to manipulate a copy of x.
+	let xCopy = x;
+	
+	while (xCopy > 0) {
+			// To build the reverse integer:
+			// We multiply the current integer in reversed by 10 so that we can add the subsequent integer to the ones place.
+			reversed = (reversed * 10) + (xCopy % 10);
+			
+			// We then divide xCopy so that we have access to the next digit.
+			xCopy = Math.floor(xCopy / 10);
+	}
+	
+	// If the reversed number is the same as x, it was a palindrom.
+	return reversed === x;
+};
