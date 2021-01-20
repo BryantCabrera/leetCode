@@ -172,3 +172,60 @@
 
 // return solution;
 // };
+
+
+// Third Recursive Attempt
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
+// var islandPerimeter = function(grid) {
+// 	// We initialize this to 1 because the 1st island we encounter will contribute 4 sides to the perimeter but the recursion only adds 3.
+// let perimeter = 0;
+
+// // Find the 1st 1/island.
+// for (let i = 0; i < grid.length; i++) {
+// 	for (let j = 0; j < grid[i].length; j++) {
+// 			// console.log(i, j, '@@@@@i, j@@@@@');
+// 			if (grid[i][j] === 1) {
+// 					// Once we find 1 island, we assume that perimeter is 4 until we add more land masses to it.
+// 					// So we initialize our fourth argument, effectively an accumulator, to 4.
+// 					perimeter += getPerimeter(grid, i, j, 4);
+// 					return perimeter;
+// 			}
+// 	}
+// }
+
+// return perimeter;
+// };
+
+// const getPerimeter = (matrix, row, col, currentPerimeter) => {
+// // console.log(`matrix[${row}][${col}]: ${matrix[row][col]}`);
+// // Edge Cases:
+// // If the row or col are not in the bounds of the grid, this is not a valid node to check. 
+// // If the node is '0', it does not add to the perimeter count/does not need to be marked.
+// if (row < 0 || row > matrix.length - 1 || col < 0 || col > matrix[row].length - 1 || matrix[row][col] === 0) {
+// 	return 0;
+// }
+
+// // Mark island as visited.
+// matrix[row][col] = 0;
+
+// // Find all adjacent land masses
+// // Up
+// currentPerimeter += getPerimeter(matrix, row - 1, col, currentPerimeter);
+
+// // Down     
+// // console.log(row + 1, matrix[row + 1][col], '@@@@@DOWN@@@@@');
+// currentPerimeter += getPerimeter(matrix, row + 1, col, currentPerimeter);
+
+// // Left
+// currentPerimeter += getPerimeter(matrix, row, col - 1, currentPerimeter);
+
+// // Right
+// currentPerimeter += getPerimeter(matrix, row, col + 1, currentPerimeter);
+
+// // Each new island we add will be connected to the other islands by 1 side, so we effectively only add 2 to the perimeter.
+// console.log(currentPerimeter + 2, '@@@@@currentPerimeter');
+// return currentPerimeter + 2;
+// };
