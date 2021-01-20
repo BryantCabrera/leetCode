@@ -52,7 +52,7 @@
 var islandPerimeter = function(grid) {
 	let perimeter = 0;
 	
-	// Find the 1st 1/island.
+	// Find the land nodes.
 	for (let i = 0; i < grid.length; i++) {
 			for (let j = 0; j < grid[i].length; j++) {
 					if (grid[i][j] === 1) {
