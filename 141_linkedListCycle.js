@@ -48,3 +48,34 @@
  
 
 // Follow up: Can you solve it using O(1) (i.e. constant) memory?
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var hasCycle = function(head) {
+	let slowPointer = head;
+	let fastPointer = head;
+	
+	// We traverse the LinkedList until slowPointer gets to a null, which means the LinkedList does not have a cycle.
+	while (slowPointer !== null && fastPointer !== null && fastPointer.next !== null) {
+			// The slowPointer moves one node at a time.
+			// The fastPointer moves twice as fast as the slowPointer.
+			slowPointer = slowPointer.next;
+			fastPointer = fastPointer.next.next;
+
+			// If the fastPointer ever ends up on the same nnode as the slowPointer, we know there is a cycle in the LinkedList.
+			if (slowPointer === fastPointer) return true;
+	}
+	
+	return false;
+};
