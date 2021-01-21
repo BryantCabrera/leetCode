@@ -66,7 +66,7 @@ var hasCycle = function(head) {
 	let slowPointer = head;
 	let fastPointer = head;
 	
-	// We traverse the LinkedList until slowPointer gets to a null, which means the LinkedList does not have a cycle.
+	// We traverse the LinkedList until fastPointer gets to a null, which means the LinkedList does not have a cycle.
 	while (slowPointer !== null && fastPointer !== null && fastPointer.next !== null) {
 			// The slowPointer moves one node at a time.
 			// The fastPointer moves twice as fast as the slowPointer.
