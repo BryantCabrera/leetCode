@@ -26,3 +26,24 @@
 
 // Input: nums = [1,2,3,1,2,3], k = 2
 // Output: false
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var containsNearbyDuplicate = function(nums, k) {
+	for (let i = 0; i < nums.length; i++) {
+			// It is ok to have j start at i + 1 here without bound checks because if i === nums.length, than j would be greater than nums.lenth and the conditional would prevent the loop from starting.
+			for (let j = i + 1; j < nums.length; j++) {
+					// If the absolute value of the difference between j and i is greater than k, there is no need to check the rest of the elements after nums[j].
+					if (Math.abs(j - i) > k) break;
+							
+					// If both numbers are equal and the absolute value of the difference between j and i is less than or equal to k, than we have satisfied the conditions for a "nearby duplicate".
+					if (nums[i] === nums[j]) return true;
+			}
+	}
+	
+	return false;
+};
