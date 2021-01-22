@@ -43,3 +43,38 @@
 // -1000 <= nums[i] <= 1000
 // nums is sorted in increasing order.
 // -1000 <= target <= 1000
+
+
+/**
+ * @param {number[]} numbers
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(numbers, target) {
+	const solution = [];
+	
+	let leftPointer = 0;
+	let rightPointer = numbers.length - 1;
+	
+	while (leftPointer < rightPointer) {
+			// Cache the elements/numbers in variables because we use them multiple times below.
+			const currentLeft = numbers[leftPointer];
+			const currentRight = numbers[rightPointer];
+			
+			if (currentLeft + currentRight === target) {
+					solution.push(leftPointer + 1);
+					solution.push(rightPointer + 1);
+					break;
+			} else if (currentLeft + currentRight < target) {
+					// We are using the fact that the numbers array is sorted to our advantage.
+					// If the sum of the 2 elements is less than the target, we can hold the right constant and increase the left because we need more than the current left to reach the target.
+					leftPointer++;
+			} else {
+					// We are using the fact that the numbers array is sorted to our advantage.
+					// If the sum of the 2 elements is greater than the target, we can hold the left constant and decrease the right because we overshot the target.
+					rightPointer--;
+			} 
+	}
+	
+	return solution;
+};
