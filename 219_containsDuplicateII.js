@@ -40,7 +40,7 @@ var containsNearbyDuplicate = function(nums, k) {
 					// If the absolute value of the difference between j and i is greater than k, there is no need to check the rest of the elements after nums[j].
 					if (Math.abs(j - i) > k) break;
 							
-					// If both numbers are equal and the absolute value of the difference between j and i is less than or equal to k, than we have satisfied the conditions for a "nearby duplicate".
+					// If both numbers are equal and the absolute value of the difference between j and i is less than or equal to k, then we have satisfied the conditions for a "nearby duplicate".
 					if (nums[i] === nums[j]) return true;
 			}
 	}

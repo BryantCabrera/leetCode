@@ -36,3 +36,28 @@
 // -231 <= nums[i] <= 231 - 1
 // 0 <= k <= 104
 // 0 <= t <= 231 - 1
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @param {number} t
+ * @return {boolean}
+ */
+var containsNearbyAlmostDuplicate = function(nums, k, t) {
+	for (let i = 0; i < nums.length; i++) {
+			// It is ok to have j start at i + 1 here without bound checks because if i === nums.length, than j would be greater than nums.lenth and the conditional would prevent the loop from starting.
+			for (let j = i + 1; j < nums.length; j++) {
+					// If the absolute value of the difference between j and i is greater than k,
+					// there is no need to check the rest of the elements after nums[j].
+					if (Math.abs(i - j) > k) break;
+					
+					// If the difference between j and i is less than or equal to k
+					// AND if the absolute value of the difference between nums[i] and nums[j] is greater than t, 
+					// then we have satisfied the conditions for a "nearby almost duplicate".
+					if (Math.abs(nums[i] - nums[j]) <= t) return true;
+			}
+	}
+			
+	return false;
+};
