@@ -44,3 +44,96 @@
  
 
 // Follow up: Could you find an O(n + m) solution?
+
+
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var countNegatives = function(grid) {
+	let count = 0;
+	
+	// Edge Case: If the grid is null, there are no negative numbers in the matrix.
+	if (grid === null) return count;
+	
+	
+	for (let i = 0; i < grid.length; i++) {
+			for (let j = 0; j < grid[i].length; j++) {
+					// If the number is negative, the count of negative numbers is the length of the row minus the current index, j.
+					// Add the count of negative numbers to overall count.
+					// Break from the inner loop as there is no need to process the rest of the row.
+					if (grid[i][j] < 0) {
+							count += grid[i].length - j;
+							break;
+					}
+			}
+	}
+		
+	return count;
+};
+
+
+// First Attempt at Binary Search
+// /**
+//  * @param {number[][]} grid
+//  * @return {number}
+//  */
+// var countNegatives = function(grid) {
+// 	let count = 0;
+	
+// 	// Edge Case: If the grid is unll, there are no negative numbers in the matrix.
+// 	if (grid === null) return count;
+	
+	
+// 	for (let i = 0; i < grid.length; i++) {
+// 			// Implement binary search.
+// 			count  += binarySearch(grid[i]);
+// 	}
+		
+// 	return count;
+// };
+
+// const binarySearch = (arr) => {
+// 	let startIndex = 0;
+// 	let endIndex = arr.length - 1;
+	
+// 	while (startIndex < endIndex) {
+// //         console.log(startIndex, endIndex,  '@@@@@startIndex, endIndex@@@@@');
+// //         let median = Math.floor((startIndex + endIndex) / 2);
+// //         console.log(median, '@@@@@median@@@@@');
+			
+// //         if (arr[median] < 0) {
+// //             console.log('arr[median] < 0');
+// //             endIndex = median - 1;
+// //         } if (arr[median] === 0) {
+// //             console.log('arr[median] === 0');
+// //             return arr.length - 1 - median;
+// //         } else if (arr[median] > 0) {
+// //             console.log('arr[median] > 0');
+// //             startIndex = median + 1;
+// //         } 
+			
+// 			const median = Math.floor((startIndex + endIndex) / 2);
+			
+// 			if (arr[median - 1] >= 0 && arr[median + 1] < 0) {
+// 					if (arr[median] < 0) {
+// 							return arr.length - median;
+// 					} else {
+// 							return arr.length - median - 1;
+// 					}
+// 			} else if (arr[median - 1] >= 0 && arr[median + 1] >= 0) {
+// 					endIndex = median - 1;
+// 			} else {
+// 					startIndex = median + 1;
+// 			}
+// 	}
+	
+	
+// 	// if (arr[endIndex] >= 0) {
+// 	//     console.log(0, '@@@@@0@@@@@');
+// 	//     return 0;
+// 	// } else {
+// 	//     console.log(arr.length - startIndex, '@@@@@arr.length - startIndex;@@@@@');
+// 	//     return arr.length - startIndex;
+// 	// }  
+// };
