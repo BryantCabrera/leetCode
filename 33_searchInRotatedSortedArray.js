@@ -41,3 +41,14 @@
 // All values of nums are unique.
 // nums is guaranteed to be rotated at some pivot.
 // -104 <= target <= 104
+
+
+// Unoptimized Solution
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var search = function(nums, target) { 
+	return nums.indexOf(target);
+};
