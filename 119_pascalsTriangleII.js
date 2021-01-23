@@ -42,3 +42,27 @@
 // Constraints:
 
 // 0 <= rowIndex <= 33
+
+
+/**
+ * @param {number} rowIndex
+ * @return {number[]}
+ */
+var getRow = function(rowIndex) {
+	const row = [];
+	
+	// The outer loop builds each row until we reach rowIndex.
+	for (let i = 0; i <= rowIndex; i++) {
+			// The inner loop builds each row by reassigning elements in the row's index.
+			// Each index's element will become the element at the previous index plus the current element at the index.
+			// We decrement, otherwise the sum would not be correct for indices that come later.
+			for (let j = row.length - 1; j > 0; j--) {
+					row[j] = row[j - 1] + row[j];
+			}
+			
+			// To complete the row, we push a 1 so that the row is bookended by 1s.
+			row.push(1);
+	}
+	
+	return row;
+};
