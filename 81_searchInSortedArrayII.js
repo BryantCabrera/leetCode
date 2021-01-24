@@ -39,3 +39,14 @@
  
 
 // Follow up: This problem is the same as Search in Rotated Sorted Array, where nums may contain duplicates. Would this affect the run-time complexity? How and why?
+
+
+// Non-optimized Solution
+// /**
+//  * @param {number[]} nums
+//  * @param {number} target
+//  * @return {boolean}
+//  */
+// var search = function(nums, target) {
+// 	return nums.includes(target);
+// };
