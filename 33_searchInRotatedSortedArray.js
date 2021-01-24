@@ -57,7 +57,7 @@ var search = function(nums, target) {
 	while (start <= end) {
 			const median = Math.floor((start + end) / 2);
 			
-			// If we have found our target, returnn its index.
+			// If we have found our target, return its index.
 			if (nums[median] === target) return median;
 			
 			if (nums[start] <= nums[median]) {
@@ -75,7 +75,7 @@ var search = function(nums, target) {
 							// If the target is within this pivoted part, continue the binary search in this part of the array.
 							start = median + 1;
 					} else {
-							// If the target is not within this pivoted part, continue the binary search in the other part of this array.
+							// If the target is not within the latter half of this pivoted part, continue the binary search in the other half of the pivoted part of this array.
 							end = median - 1;
 					}
 			}
