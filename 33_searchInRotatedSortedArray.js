@@ -75,7 +75,7 @@ var search = function(nums, target) {
 							// If the target is within this pivoted part, continue the binary search in this part of the array.
 							start = median + 1;
 					} else {
-							// If the target is nnot within this pivoted part, continue the binary search in the other part of this array.
+							// If the target is not within this pivoted part, continue the binary search in the other part of this array.
 							end = median - 1;
 					}
 			}
