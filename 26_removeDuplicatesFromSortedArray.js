@@ -51,3 +51,24 @@
 // 0 <= nums.length <= 3 * 104
 // -104 <= nums[i] <= 104
 // nums is sorted in ascending order.
+
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+	const valueMap = new Map();
+	
+	for (let i = nums.length - 1; i >= 0; i--) {
+			if (!valueMap.get(nums[i])) {
+					// If the value doesn't exist in the hashMap, add it.
+					valueMap.set(nums[i], i);
+			} else {
+					// If the value does exist in the hashMap, remove the element from the array.
+					nums.splice(i, 1);
+			}
+	}
+	
+	return nums.length;
+};
