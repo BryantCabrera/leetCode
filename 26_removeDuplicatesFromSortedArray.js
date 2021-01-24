@@ -60,6 +60,7 @@
 var removeDuplicates = function(nums) {
 	const valueMap = new Map();
 	
+	// We decrement so that when we remove an element from the array, we do nont mess with the counter of the foor loop.
 	for (let i = nums.length - 1; i >= 0; i--) {
 			if (!valueMap.get(nums[i])) {
 					// If the value doesn't exist in the hashMap, add it.
