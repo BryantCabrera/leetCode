@@ -53,3 +53,28 @@
 // nums is sorted in ascending order.
 
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+	const valueMap = new Map();
+	
+	// We decrement so that when we remove an element from the array, we do nont mess with the counter of the foor loop.
+	for (let i = nums.length - 1; i >= 0; i--) {
+			if (!valueMap.get(nums[i]))  {
+					// If the value doesn't exist in the hashMap, add it.
+					valueMap.set(nums[i], 1);
+			} else if (valueMap.get(nums[i]) === 1) {
+					// If the value does exist in the hashMap and has a count of 1, increment it to 2.
+					valueMap.set(nums[i], 2);
+			} else {
+					// If the value does exist in the hashMap and already has a count of 2, remove the element from the array.
+					// This means we already have the max count of this number in the array.
+					// Remove any other instances of this number.
+					nums.splice(i, 1);
+			}
+	}
+	
+	return nums.length;
+};
