@@ -41,3 +41,73 @@
 // -109 <= rec1[i], rec2[i] <= 109
 // rec1[0] <= rec1[2] and rec1[1] <= rec1[3]
 // rec2[0] <= rec2[2] and rec2[1] <= rec2[3]
+
+
+
+
+
+// First Attempt
+// /**
+//  * @param {number[]} rec1
+//  * @param {number[]} rec2
+//  * @return {boolean}
+//  */
+// var isRectangleOverlap = function(rec1, rec2) {
+// 	// If either X coordinate of rec2 falls within the range of the X coordinates of rec1,
+// 	// and either Y coordinate of rec2 falls within the range of the Y coordinates od rec1,
+// 	// then the rectangles overlap.
+// 	const rec2XWithinRec1XRange = (rec2[0] > rec1[0] && rec2[0] < rec1[2]) || (rec2[2] > rec1[0] && rec2[2] < rec1[2]);
+// 	console.log(rec2XWithinRec1XRange, '@@@@@rec2XWithinRec1XRange@@@@@');
+// 	const rec2YWithinRec1YRange = (rec2[1] > rec1[1] && rec2[1] < rec1[3]) || (rec2[3] > rec1[1] && rec2[3] < rec1[3]);
+// 	console.log(rec2YWithinRec1YRange, '@@@@@rec2YWithinRec1YRange@@@@@');
+	
+// 	if (rec2XWithinRec1XRange && rec2YWithinRec1YRange) {
+// 			return true;
+// 	}
+	
+// 	return false;
+// };
+
+
+// Second Attempt
+// /**
+//  * @param {number[]} rec1
+//  * @param {number[]} rec2
+//  * @return {boolean}
+//  */
+// var isRectangleOverlap = function(rec1, rec2) {
+// 	// If either X coordinate of rec2 falls within the range of the X coordinates of rec1,
+// 	// and either Y coordinate of rec2 falls within the range of the Y coordinates od rec1,
+// 	// then the rectangles overlap.
+// 	return rec2[0] < rec1[2] && rec2[2] > rec1[0] && rec2[1] < rec1[3] && rec2[3] > rec1[1];
+// };
+
+
+// Third Attempt
+// /**
+//  * @param {number[]} rec1
+//  * @param {number[]} rec2
+//  * @return {boolean}
+//  */
+// var isRectangleOverlap = function(rec1, rec2) {
+// 	// If one of the corners of rec2 falls within the X coordinate ranges and Y coordinate ranges of X 1,
+// 	// then the rectangles overlap.
+	
+// 	// Check to see if the coordinate of a corner in rec2 falls within rec1.
+// 	const inRangeOfRect1 = (rec2X, rec2Y) => {
+// 			return rec2X >= rec1[0] && rec2X <= rec1[2] && rec2Y >= rec1[1] && rec2Y <= rec1[3];
+// 	};
+	
+// 	// Flesh out the coordinates of the corners of rec2.
+// 	const rec2Coordinates = [[rec2[0], rec2[1]], [rec2[0], rec2[3]], [rec2[2], rec2[3]], rec2[2], rec2[1]];
+	
+// 	// Loop through all of the coordinates of rec2's 4 corners.
+// 	for (const coordinate of rec2Coordinates) {
+// 			console.log(coordinate, '@@@@@coordinate@@@@@');
+// 			// Once we find one point of overlap, break out of the loop by returning true.
+// 			if (inRangeOfRect1(coordinate[0], coordinate[1])) return true;
+// 	}
+	
+// 	// If no cornner of rec2 falls within rec1, the rectangles don't overlap.
+// 	return false;
+// };
