@@ -93,7 +93,7 @@ var addTwoNumbers = function(l1, l2) {
 			}
 	}
 	
-	// If there is a non-zero carry, append it to the LinkedList
+	// If there is a non-zero carry, append it to the LinkedList.
 	if (carry) {
 			currentSolution.next = new ListNode(carry);
 	}
