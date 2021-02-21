@@ -41,3 +41,38 @@
 
 // 1 <= arr.length <= 104
 // 0 <= arr[i] <= 104
+
+
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var validMountainArray = function(arr) {
+	let peak = arr[0];
+	let current = arr[0];
+	let increased = false;
+	let decreased = false;
+	
+	for (let i = 1; i < arr.length; i++) {
+			// If any integers are repeated consecutively, the array is not strictly increasing or decreasing.
+			if (arr[i] === current) return false;
+			
+			if (arr[i] > current && current === peak) {
+					// If current is the same as peak, we are in the increasing part of the array.
+					increased = true;
+					// If arr[i] is bigger than the currently cached element, it becomes the new peak.
+					peak = arr[i];
+			} else if (arr[i] < current && current <= peak) {
+					// If current is less than or equal to the peak and arr[i] is less than current, we are in the decreasing part of the array.
+					decreased = true;
+			} else if (arr[i] > current && current < peak) {
+					// If we are in the decreasing part of the array and arr[i] is greater than the currently cached element, the array is not strictly increasing or decreasing.
+					return false;
+			} 
+			
+			current = arr[i];
+	}
+	
+	// The array had to have both increased and decreased.
+	return increased && decreased;
+};
