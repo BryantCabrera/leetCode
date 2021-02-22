@@ -40,8 +40,8 @@ var maxProduct = function(nums) {
 	
 	// Loop through each element in the array.
 	for (let i = 0; i < nums.length; i++) {
+			// We have to cache the current positiveGlobalMax because we will need it in a later comparison after it gets reassigned.
 			let temp = positiveGlobalMax;
-			
 			
 			// We have to account for both the positiveGlobalMax and negativeGlobalMax because if the current integer is negative, multiplying it by the current negativeGlobalMax could yield a greater product.
 			// The positiveGlobalMax is the maximum of either just taking the current number at the index or multiplying the current number to (the running positive max product or running negative max product).
