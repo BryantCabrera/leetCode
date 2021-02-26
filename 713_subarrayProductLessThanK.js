@@ -26,3 +26,34 @@
 // 0 < nums.length <= 50000.
 // 0 < nums[i] < 1000.
 // 0 <= k < 10^6.
+
+
+// First Attempt: O(N^2) Time Complexity
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var numSubarrayProductLessThanK = function(nums, k) {
+	let solution = 0;
+	
+	// Loop through each element in the array.
+	for (let i = 0; i < nums.length; i++) {
+			let runningProduct = 1;
+
+			// Loop through the integers in the array starting from the current element and determine the runningProduct.
+			for (let j = i; j < nums.length; j++) {
+					runningProduct *= nums[j];
+
+					if (runningProduct < k) {
+							// If the current integer is less than k, that is a valid subarray.
+							solution++;
+					} else {
+							continue;
+					}
+			}
+	}
+	
+	return solution;
+};
