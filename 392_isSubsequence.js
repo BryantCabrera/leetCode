@@ -36,3 +36,26 @@
  
 
 // Follow up: If there are lots of incoming s, say s1, s2, ..., sk where k >= 109, and you want to check one by one to see if t has its subsequence. In this scenario, how would you change your code?
+
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequence = function(s, t) {
+	// We will start the search for the 0th indexed character in s among the characters in t.
+	let currentSIndex = 0;
+	
+	// Loop through the characters in t in order.
+	for (let i = 0; i < t.length; i++) {
+			// If we have already found the entirety of s to be a substring of t, break.
+			if (currentSIndex > s.length - 1) break;
+			
+			// If the current character in s is a character t, we will look for the next character in s.
+			if (t[i] === s[currentSIndex]) currentSIndex++;
+	}
+	
+	// If we have incremented past the length of s, that means we have found its entirety in t, and s is thus a substring of t.
+	return currentSIndex === s.length;
+};
