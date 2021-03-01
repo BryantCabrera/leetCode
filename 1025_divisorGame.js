@@ -39,3 +39,39 @@
 // Note:
 
 // 1 <= N <= 1000
+
+
+/**
+ * @param {number} N
+ * @return {boolean}
+ */
+var divisorGame = function(N) {
+	// EDGE CASES: 
+	// If N is 0, Alice has no numbers to divide N by.
+	// If N is 1, Alice cannot divide it by 0.
+	if (N === 0 || N === 1) return false;
+	
+	let currentTurn = 1;
+	
+	// Given the edge cases above, we cotinue the game until N is less than or equal to 1.
+	while (N > 1) {
+			// Loop through the digits from 1 to N,
+			for (let i = 1; i < N; i++) {
+					// If N is evenly divisible by i,
+					if (N % i === 0) {
+							// Change the turn.
+							currentTurn *= -1;
+							
+							// And update N.
+							N -= i;
+							
+							// Let the next player take his/her turn.
+							break;
+					}
+			}
+	}
+	
+	// If it is currently Bob's turn, Alice has won.
+	// If it is currently Alice's turn, Alice has lost.
+	return currentTurn === -1;
+};
