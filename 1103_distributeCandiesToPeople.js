@@ -48,3 +48,42 @@
 
 // 1 <= candies <= 10^9
 // 1 <= num_people <= 1000
+
+
+/**
+ * @param {number} candies
+ * @param {number} num_people
+ * @return {number[]}
+ */
+var distributeCandies = function(candies, num_people) {
+	const solution = new Array(num_people).fill(0);
+	
+	let currentPerson = 1;
+	let additionalCandy = 0;
+	
+	// While we still have candies to distribute,
+	while (candies > 0) {
+			// Determine the amounnt of candy to give to the current person.
+			let candyToGive = currentPerson + additionalCandy;
+			
+			// If there is not enough candy to give to the current person given the amount we are supposed to give them, give them the amount of candies we have left.
+			let candyGiven = candyToGive > candies ? candies : candyToGive;
+			
+			// Update the amount of candy distributed to the current person.
+			solution[currentPerson - 1] += candyGiven;
+			
+			// Update the remaining candy left to. distribute.
+			candies -= candyGiven;
+			
+			// Move onto the next person.
+			// If we are currently at the last person, start ocer at the first person.
+			currentPerson = currentPerson === num_people ? 1 : currentPerson + 1;
+			
+			// When we are at the end of the row, update the additional candy we are distributing by adding the number of people to it.
+			if (currentPerson === 1) {
+					additionalCandy += num_people;
+			}    
+	}
+	
+	return solution;
+};
