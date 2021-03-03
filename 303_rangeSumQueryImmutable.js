@@ -41,3 +41,34 @@
 // -105 <= nums[i] <= 105
 // 0 <= i <= j < nums.length
 // At most 104 calls will be made to sumRange.
+
+
+/**
+ * @param {number[]} nums
+ */
+var NumArray = function(nums) {
+	this.data = nums;
+};
+
+/** 
+* @param {number} i 
+* @param {number} j
+* @return {number}
+*/
+NumArray.prototype.sumRange = function(i, j) {
+	let solution = 0;
+	
+	// Loop from indexes i to j and add the elements at those indices together.
+	// Because i and j are contrained to be between 0 and nums.length, there aren't any bound checks we need to perform.
+	for (let index = i; index <= j; index++) {
+			solution += this.data[index];
+	}
+	
+	return solution;
+};
+
+/** 
+* Your NumArray object will be instantiated and called as such:
+* var obj = new NumArray(nums)
+* var param_1 = obj.sumRange(i,j)
+*/
