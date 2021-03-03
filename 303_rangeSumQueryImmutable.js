@@ -43,6 +43,41 @@
 // At most 104 calls will be made to sumRange.
 
 
+// Optimized Solution
+// Time Complexity: O(1)
+// Space Complexity: O(N)
+/**
+ * @param {number[]} nums
+ */
+var NumArray = function(nums) {
+	this.data = [];
+	
+	// Create an array of the sum of the elements up to that index.
+	for (let i = 0; i < nums.length; i++) {
+			// If we are at index 0, just push in the element at the 0th index.
+			this.data.push(i === 0 ? nums[i] : nums[i] + this.data[i - 1]);
+	}
+};
+
+/** 
+* @param {number} i 
+* @param {number} j
+* @return {number}
+*/
+NumArray.prototype.sumRange = function(i, j) {
+	// Return the sum up to index j minus the sum up to i - 1.
+	// If i is 0, just take the sum up to j.
+	return this.data[j] - (i === 0 ? 0 : this.data[i - 1]);
+};
+
+/** 
+* Your NumArray object will be instantiated and called as such:
+* var obj = new NumArray(nums)
+* var param_1 = obj.sumRange(i,j)
+*/
+
+
+// Unoptimized Solution
 /**
  * @param {number[]} nums
  */
@@ -58,7 +93,7 @@ var NumArray = function(nums) {
 NumArray.prototype.sumRange = function(i, j) {
 	let solution = 0;
 	
-	// Loop from indexes i to j and add the elements at those indices together.
+	// Loop from indices i to j and add the elements at those indices together.
 	// Because i and j are contrained to be between 0 and nums.length, there aren't any bound checks we need to perform.
 	for (let index = i; index <= j; index++) {
 			solution += this.data[index];
